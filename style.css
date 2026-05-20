@@ -872,11 +872,23 @@ footer p {
         font-size: 0.8rem;
     }
     
-    /* Afastar o conteúdo da hero do topo e melhorar leitura */
+    /* Consertar o "Descubra o que preparamos" que estava embolado com o botão */
+    .hero {
+        flex-direction: column;
+        padding-bottom: 40px;
+    }
     .hero-content {
         margin-top: 130px; /* Empurra bem para baixo para fugir do header duplo */
         padding: 0 15px; /* Dá um respiro nas laterais */
     }
+    .scroll-indicator {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 40px; /* Cria espaço entre o botão e a seta */
+    }
+    
     .hero .title {
         font-size: 2.3rem; /* Um pouco menor para não quebrar feio */
         line-height: 1.1;
