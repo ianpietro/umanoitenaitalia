@@ -850,11 +850,48 @@ footer p {
 }
 
 @media (max-width: 768px) {
+    /* Navbar correções para não embolar */
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .nav-content .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Afastar o conteúdo da hero do topo e melhorar leitura */
+    .hero-content {
+        margin-top: 80px;
+        padding: 0 15px; /* Dá um respiro nas laterais */
+    }
+    .hero .title {
+        font-size: 2.5rem; /* Um pouco menor para não quebrar feio */
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+    }
+    .hero .subtitle {
+        font-size: 1.05rem;
+        line-height: 1.5; /* Espaçamento mais confortável entre as linhas */
+        margin-bottom: 2rem;
+        font-weight: 300; /* Deixa o texto mais leve e chique */
+    }
+
+    /* Reduzir botões flutuantes para não cobrir texto */
+    .whatsapp-float {
+        width: 45px !important;
+        height: 45px !important;
+        bottom: 15px !important;
+        right: 15px !important;
+        font-size: 24px !important;
+    }
     .music-float {
-        bottom: 20px;
-        left: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 22px;
+        width: 45px !important;
+        height: 45px !important;
+        bottom: 15px !important;
+        left: 15px !important;
+        font-size: 20px !important;
     }
 }
