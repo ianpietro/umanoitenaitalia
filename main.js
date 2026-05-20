@@ -75,22 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasInteracted = false;
 
     if(bgMusic && musicToggle) {
-        const targetVolume = 0.08;
+        const targetVolume = 0.025; // Volume bem mais baixo agora (2.5%)
         bgMusic.volume = 0; // Começa zerado para o fade in
         bgMusic.currentTime = 34; // Inicia a partir dos 34 segundos
         let fadeInterval;
 
-        const fadeIn = () => {
+        const fadeIn = (durationMs) => {
             clearInterval(fadeInterval);
             let vol = bgMusic.volume;
+            const steps = Math.max(1, durationMs / 50);
+            const increment = (targetVolume - vol) / steps;
+
             fadeInterval = setInterval(() => {
                 if (vol < targetVolume) {
-                    vol += 0.0005; // Aumento bem lento para o fade durar 8 segundos
+                    vol += increment;
                     bgMusic.volume = Math.min(vol, targetVolume);
                 } else {
+                    bgMusic.volume = targetVolume;
                     clearInterval(fadeInterval);
                 }
-            }, 50); // 160 passos de 50ms = 8000ms (8 segundos)
+            }, 50);
         };
 
         const updateIconState = () => {
@@ -106,9 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const toggleMusic = () => {
+            hasInteracted = true; // Impede que o scroll tente tocar de novo
             if (bgMusic.paused) {
                 bgMusic.play().then(() => {
-                    fadeIn();
+                    fadeIn(500); // Fade in rápido (meio segundo) se a pessoa clicar no botão
                     updateIconState();
                 }).catch(e => console.log('Autoplay blocked:', e));
             } else {
@@ -122,12 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Verifica estado inicial
         setTimeout(updateIconState, 100);
 
-        // Tenta tocar na primeira interação do usuário com a página (scroll ou clique)
+        // Tenta tocar na primeira interação do usuário com a página
         const playOnInteract = () => {
             if (!hasInteracted && bgMusic.paused) {
                 hasInteracted = true;
+                bgMusic.volume = 0;
                 bgMusic.play().then(() => {
-                    fadeIn();
+                    fadeIn(3000); // Fade in de 3 segundos se for pelo scroll
                     updateIconState();
                 }).catch(e => console.log(e));
             }
@@ -136,5 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.addEventListener('click', playOnInteract, { once: true });
         document.body.addEventListener('scroll', playOnInteract, { once: true });
         window.addEventListener('scroll', playOnInteract, { once: true });
+        document.body.addEventListener('touchstart', playOnInteract, { once: true });
     }
 });
