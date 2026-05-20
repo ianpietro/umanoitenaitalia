@@ -874,19 +874,25 @@ footer p {
     
     /* Afastar o conteúdo da hero do topo e melhorar leitura */
     .hero-content {
-        margin-top: 120px; /* Empurra bem para baixo para fugir do header duplo */
+        margin-top: 130px; /* Empurra bem para baixo para fugir do header duplo */
         padding: 0 15px; /* Dá um respiro nas laterais */
     }
     .hero .title {
-        font-size: 2.5rem; /* Um pouco menor para não quebrar feio */
+        font-size: 2.3rem; /* Um pouco menor para não quebrar feio */
         line-height: 1.1;
         margin-bottom: 0.8rem;
     }
     .hero .subtitle {
-        font-size: 1.05rem;
+        font-size: 1rem;
         line-height: 1.5; /* Espaçamento mais confortável entre as linhas */
         margin-bottom: 2rem;
         font-weight: 300; /* Deixa o texto mais leve e chique */
+    }
+
+    /* Diminuir os títulos grandes das outras seções */
+    .section-title {
+        font-size: 2rem;
+        line-height: 1.2;
     }
 
     /* Reduzir botões flutuantes para não cobrir texto */
