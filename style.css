@@ -884,9 +884,11 @@ footer p {
     .scroll-indicator {
         position: relative;
         bottom: auto;
-        left: auto;
+        left: 0;
         transform: none;
         margin-top: 40px; /* Cria espaço entre o botão e a seta */
+        width: 100%;
+        text-align: center;
     }
     
     .hero .title {
